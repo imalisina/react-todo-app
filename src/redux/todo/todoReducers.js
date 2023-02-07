@@ -12,6 +12,8 @@ export const fetchTodosReducer = ( state = initialState, { type, payload } ) => 
             return {...state , todos : payload};
         case todoTypes.REMOVE_TODO:
             return state;
+        case todoTypes.ADD_TODO:
+            return state;
         default:
             return state;
     }

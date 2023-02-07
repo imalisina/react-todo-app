@@ -26,7 +26,7 @@ const AllTodos = () => {
     // Define a method to trigger remove todo action and display a success toast
     const removeTodoHandler = (id) => {
         dispatch(removeTodo(id));
-        setTimeout(() => setIsVisible(true), 1500);
+        setTimeout(() => setIsVisible(true), 1000);
         setTimeout(() => setIsVisible(false), 3000);
     }
 
@@ -42,7 +42,12 @@ const AllTodos = () => {
                                     {
                                         todo.description != null ? (<dd className='text-sm'>{todo.description}</dd>) : ""
                                     }
-                                    <a onClick={() => removeTodoHandler(todo.id)}>Done</a>
+                                    <a onClick={() => removeTodoHandler(todo.id)} type="button" className="text-white bg-gray-400 hover:bg-gray-300 focus:ring-4 focus:outline-none focus:ring-gray-100 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center mr-2">
+                                        <svg className='w-4 h-4' fill="none" stroke="currentColor" strokeWidth={3} viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                            <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                                        </svg>
+                                        <span className="sr-only">Icon description</span>
+                                    </a>
                                 </div>
                             );
                         })
@@ -50,7 +55,7 @@ const AllTodos = () => {
                 }
             </dl>
             {
-                !isVisible ? (<SuccessToast />) : ""
+                isVisible ? (<SuccessToast />) : ""
             }
         </>
     );

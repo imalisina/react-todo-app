@@ -15,6 +15,8 @@ const AddNewTask = () => {
     const addNewTaskHandler = () => {
         setIsLoading(true);
         dispatch(addTodo(newTask));
+        // Set the new task input to an empty string
+        setNewTask("");
         setTimeout(() => setIsLoading(false), 1500);
     }
 
@@ -22,7 +24,7 @@ const AddNewTask = () => {
         <>
             <div className="w-2/5 mx-auto mt-10">
                 <div className="relative">
-                    <input disabled={isLoading} onChange={(event) => setNewTask(event.target.value)} type="text" className="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Add a new daily task" />
+                    <input value={newTask} disabled={isLoading} onChange={(event) => setNewTask(event.target.value)} type="text" className="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Add a new daily task" />
                     {
                         !isLoading
                             ? (<button onClick={() => addNewTaskHandler()} className="text-white absolute right-2.5 bottom-2.5 text-white bg-gradient-to-br from-pink-500 to-orange-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800 font-medium rounded-lg text-sm px-4 py-2">

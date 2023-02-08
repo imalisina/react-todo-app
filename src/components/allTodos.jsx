@@ -3,7 +3,6 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 // Todo actions
 import { fetchTodos, removeTodo } from '../redux/todo/todoActions';
-import AddNewTask from './addNewTask';
 
 // Loading placeholder
 import LoadingPlaceholder from './loadingPlaceholder';
@@ -15,15 +14,17 @@ const AllTodos = () => {
     const [isLoading, setIsLoading] = useState(true);
     // Define toast visible status
     const [isVisible, setIsVisible] = useState(false);
+    // Call useSelector to get all todos
+    const todos = useSelector((state) => state.allTodos.todos);
+    // Call useSelector to check for changes
+    const changes = useSelector((state) => state.allTodos.changes);
     // Define the dispatch
     const dispatch = useDispatch();
-    // Define a variable to get requested data from reducer
-    const todos = useSelector((state) => state.allTodos.todos);
     // Activate fetch todos request
     useEffect(() => {
         dispatch(fetchTodos());
         setTimeout(() => setIsLoading(false), 1500);
-    }, [todos]);
+    }, [changes]);
     // Define a method to trigger remove todo action and display a success toast
     const removeTodoHandler = (id) => {
         dispatch(removeTodo(id));
@@ -33,10 +34,9 @@ const AllTodos = () => {
 
     return (
         <>
-            <AddNewTask />
             <dl className="mt-10 mx-auto max-w-md text-gray-600 divide-y divide-gray-300">
                 {
-                    !isLoading
+                    !isLoading && todos != null
                         ? todos.map((todo, index) => {
                             return (
                                 <div key={index} className="py-4 flex flex-row justify-between">

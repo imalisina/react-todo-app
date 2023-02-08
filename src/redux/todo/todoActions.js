@@ -14,7 +14,7 @@ export const fetchTodos = () => async (dispatch) => {
 export const addTodo = (newTodoTitle) => async (dispatch) => {
     await axios({
         method: 'post', url: MAIN_URL, data: {
-            title: 'hellowww !'
+            title: newTodoTitle,
         },
     },);
     dispatch({ type: todoTypes.ADD_TODO });

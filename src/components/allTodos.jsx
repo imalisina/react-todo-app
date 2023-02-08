@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 // Redux hooks
 import { useDispatch, useSelector } from 'react-redux';
 // Todo actions
-import { fetchTodos, removeTodo, addTodo } from '../redux/todo/todoActions';
+import { fetchTodos, removeTodo } from '../redux/todo/todoActions';
+import AddNewTask from './addNewTask';
 
 // Loading placeholder
 import LoadingPlaceholder from './loadingPlaceholder';
@@ -32,6 +33,7 @@ const AllTodos = () => {
 
     return (
         <>
+            <AddNewTask />
             <dl className="mt-10 mx-auto max-w-md text-gray-600 divide-y divide-gray-300">
                 {
                     !isLoading
